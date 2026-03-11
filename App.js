@@ -1,28 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import Slider from 'react-slick';
-import './App.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+const { useState, useEffect } = React;
 
 const apiBase = 'http://localhost:5000'; // Flask backend URL
 
 function Carousel({ title, movies }) {
-  const settings = {
-    dots: false,
-    infinite: false,
-    slidesToShow: 6,
-    slidesToScroll: 6,
-    swipeToSlide: true,
-    responsive: [
-      { breakpoint: 1200, settings: { slidesToShow: 4, slidesToScroll: 4 } },
-      { breakpoint: 800,  settings: { slidesToShow: 2, slidesToScroll: 2 } }
-    ]
-  };
-
   return (
     <div className="carousel">
       <h2>{title}</h2>
-      <Slider {...settings}>
+      <div className="carousel-container">
         {movies.map(movie => (
           <div key={movie.id} className="movie-card">
             <img
@@ -33,7 +17,7 @@ function Carousel({ title, movies }) {
             <p>{movie.title}</p>
           </div>
         ))}
-      </Slider>
+      </div>
     </div>
   );
 }
@@ -48,14 +32,16 @@ function App() {
   useEffect(() => {
     fetch(`${apiBase}/movies/popular`)
       .then(res => res.json())
-      .then(setPopularMovies);
+      .then(setPopularMovies)
+      .catch(console.error);
 
     genres.forEach(genre => {
       fetch(`${apiBase}/recommend?genre=${encodeURIComponent(genre)}`)
         .then(res => res.json())
         .then(data => {
           setGenreMovies(prev => ({ ...prev, [genre]: data }));
-        });
+        })
+        .catch(console.error);
     });
   }, []);
 
@@ -65,7 +51,8 @@ function App() {
     } else {
       fetch(`${apiBase}/movies/search?q=${encodeURIComponent(searchQuery)}`)
         .then(res => res.json())
-        .then(setSearchResults);
+        .then(setSearchResults)
+        .catch(console.error);
     }
   };
 
@@ -82,7 +69,7 @@ function App() {
             onKeyDown={e => e.key === "Enter" && handleSearch()}
             style={{width: "300px", padding: "8px", fontSize: "16px", borderRadius: "4px"}}
           />
-          <button onClick={handleSearch} style={{padding: "8px 16px", marginLeft: "8px"}}>Search</button>
+          <button onClick={handleSearch} style={{padding: "8px 16px", marginLeft: "8px", cursor: "pointer", borderRadius: "4px", backgroundColor: "#e50914", color: "white", border: "none", fontWeight: "bold"}}>Search</button>
         </div>
       </header>
 
@@ -102,4 +89,5 @@ function App() {
   );
 }
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);

@@ -21,7 +21,26 @@ header {
   margin-bottom: 40px;
 }
 
+.carousel-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb {
+  background: #e50914; /* Netflix red */
+  border-radius: 4px;
+}
+
 .movie-card {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
   padding: 5px;
   text-align: center;
 }
