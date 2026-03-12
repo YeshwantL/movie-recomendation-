@@ -34,7 +34,8 @@ header {
 }
 
 .carousel-container::-webkit-scrollbar-thumb {
-  background: #e50914; /* Netflix red */
+  background: #e50914;
+  /* Netflix red */
   border-radius: 4px;
 }
 
@@ -48,7 +49,7 @@ header {
 .poster {
   width: 150px;
   border-radius: 6px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.7);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7);
   cursor: pointer;
   transition: transform 0.3s ease;
   margin-bottom: 10px;
