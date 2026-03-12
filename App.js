@@ -67,9 +67,9 @@ function App() {
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             onKeyDown={e => e.key === "Enter" && handleSearch()}
-            style={{width: "300px", padding: "8px", fontSize: "16px", borderRadius: "4px"}}
+            style={{ width: "300px", padding: "8px", fontSize: "16px", borderRadius: "4px" }}
           />
-          <button onClick={handleSearch} style={{padding: "8px 16px", marginLeft: "8px", cursor: "pointer", borderRadius: "4px", backgroundColor: "#e50914", color: "white", border: "none", fontWeight: "bold"}}>Search</button>
+          <button onClick={handleSearch} style={{ padding: "8px 16px", marginLeft: "8px", cursor: "pointer", borderRadius: "4px", backgroundColor: "#e50914", color: "white", border: "none", fontWeight: "bold" }}>Search</button>
         </div>
       </header>
 
